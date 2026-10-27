@@ -1,1 +1,564 @@
-F
+<style>
+  /* ═══════════════ HERO ═══════════════ */
+  .news-hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #5865F2 0%, #8a95ff 55%, #c4b5fd 100%);
+    border-radius: 16px;
+    padding: 36px 32px 32px;
+    color: #fff;
+    margin: 0 0 24px;
+    box-shadow: 0 16px 48px rgba(88, 101, 242, 0.35);
+  }
+  .news-hero::before {
+    content: '';
+    position: absolute;
+    top: -60%;
+    right: -20%;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(255,255,255,0.25), transparent 65%);
+    pointer-events: none;
+  }
+  .news-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40%;
+    left: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(196,181,253,0.4), transparent 70%);
+    pointer-events: none;
+  }
+  .news-hero .news-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px 5px 10px;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 100px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: news-pulse 2.4s ease-in-out infinite;
+  }
+  .news-badge svg {
+    width: 14px;
+    height: 14px;
+    fill: #fff;
+    animation: news-spin 6s linear infinite;
+  }
+  @keyframes news-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.5); }
+    50%      { box-shadow: 0 0 0 8px rgba(255,255,255,0); }
+  }
+  @keyframes news-spin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .news-hero h2 {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 10px;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: #fff;
+  }
+  .news-hero p {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.55;
+    opacity: 0.94;
+    max-width: 560px;
+    color: #fff;
+  }
+
+  /* ═══════════════ IMAGE ═══════════════ */
+  .news-image {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    margin: 20px 0 24px;
+    border-radius: 12px;
+    border: 1px solid var(--border, rgba(255,255,255,0.08));
+    box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+  }
+
+  /* ═══════════════ SECTION TITLE ═══════════════ */
+  .news-h3 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text, #ececf1);
+    margin: 28px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .news-h3-ico {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, rgba(88, 101, 242, 0.18), rgba(138, 149, 255, 0.08));
+    border: 1px solid rgba(88, 101, 242, 0.28);
+    flex-shrink: 0;
+    color: #8a95ff;
+  }
+  .news-h3-ico svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ═══════════════ FEATURES GRID ═══════════════ */
+  .news-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 16px 0 8px;
+  }
+  .news-feature {
+    padding: 16px 18px;
+    background: var(--bg-elev, #111114);
+    border: 1px solid var(--border, #26262e);
+    border-radius: 12px;
+    transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .news-feature::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(600px 120px at 0% 0%, var(--feature-glow, transparent), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .news-feature:hover {
+    transform: translateY(-2px);
+    border-color: var(--feature-border, rgba(88, 101, 242, 0.5));
+    box-shadow: 0 12px 32px -12px var(--feature-shadow, rgba(88, 101, 242, 0.4));
+  }
+  .news-feature:hover::before { opacity: 1; }
+
+  .news-feature .news-ico {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    margin-bottom: 12px;
+    color: #fff;
+    flex-shrink: 0;
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+  .news-feature:hover .news-ico {
+    transform: scale(1.06) rotate(-3deg);
+  }
+  .news-feature .news-ico svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ── Категориальные градиенты ── */
+  .news-ico.ico-economy {
+    background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
+    box-shadow: 0 8px 20px -6px rgba(245, 158, 11, 0.5), inset 0 1px 0 rgba(255,255,255,0.25);
+  }
+  .news-feature.f-economy {
+    --feature-glow: rgba(245, 158, 11, 0.10);
+    --feature-border: rgba(245, 158, 11, 0.5);
+    --feature-shadow: rgba(245, 158, 11, 0.35);
+  }
+
+  .news-ico.ico-moderation {
+    background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+    box-shadow: 0 8px 20px -6px rgba(139, 92, 246, 0.5), inset 0 1px 0 rgba(255,255,255,0.25);
+  }
+  .news-feature.f-moderation {
+    --feature-glow: rgba(139, 92, 246, 0.10);
+    --feature-border: rgba(139, 92, 246, 0.5);
+    --feature-shadow: rgba(139, 92, 246, 0.35);
+  }
+
+  .news-ico.ico-tickets {
+    background: linear-gradient(135deg, #06b6d4 0%, #22d3ee 100%);
+    box-shadow: 0 8px 20px -6px rgba(6, 182, 212, 0.5), inset 0 1px 0 rgba(255,255,255,0.25);
+  }
+  .news-feature.f-tickets {
+    --feature-glow: rgba(6, 182, 212, 0.10);
+    --feature-border: rgba(6, 182, 212, 0.5);
+    --feature-shadow: rgba(6, 182, 212, 0.35);
+  }
+
+  .news-ico.ico-general {
+    background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%);
+    box-shadow: 0 8px 20px -6px rgba(236, 72, 153, 0.5), inset 0 1px 0 rgba(255,255,255,0.25);
+  }
+  .news-feature.f-general {
+    --feature-glow: rgba(236, 72, 153, 0.10);
+    --feature-border: rgba(236, 72, 153, 0.5);
+    --feature-shadow: rgba(236, 72, 153, 0.35);
+  }
+
+  .news-feature strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text, #ececf1);
+    margin-bottom: 4px;
+  }
+  .news-feature p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-2, #b8b8c2);
+  }
+
+  /* ═══════════════ CHECK-LIST ═══════════════ */
+  .news-list {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border, #26262e);
+    background: var(--bg-elev, #111114);
+    overflow: hidden;
+  }
+  .news-list li {
+    position: relative;
+    padding: 12px 16px 12px 46px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-2, #b8b8c2);
+    border-bottom: 1px solid var(--border, #26262e);
+    transition: background 0.15s ease, padding-left 0.2s ease;
+  }
+  .news-list li:last-child { border-bottom: 0; }
+  .news-list li:hover {
+    background: rgba(88, 101, 242, 0.04);
+    padding-left: 50px;
+  }
+  .news-list li strong {
+    color: var(--text, #ececf1);
+    font-weight: 600;
+  }
+  .news-list li::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a95ff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='M20 6 9 17l-5-5'/></svg>")
+      center / 12px no-repeat,
+      rgba(88, 101, 242, 0.16);
+    box-shadow: inset 0 0 0 1px rgba(88, 101, 242, 0.3);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  .news-list li:hover::before {
+    transform: translateY(-50%) scale(1.1);
+    background-color: rgba(88, 101, 242, 0.25);
+  }
+
+  /* ═══════════════ QUOTE ═══════════════ */
+  .news-quote {
+    margin: 20px 0;
+    padding: 16px 20px;
+    background: rgba(88, 101, 242, 0.08);
+    border-left: 3px solid var(--primary, #5865F2);
+    border-radius: 0 10px 10px 0;
+    font-size: 14.5px;
+    line-height: 1.65;
+    font-style: italic;
+    color: var(--text-2, #b8b8c2);
+    position: relative;
+  }
+  .news-quote::before {
+    content: '';
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    width: 28px;
+    height: 28px;
+    background:
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%235865F2' opacity='0.25'><path d='M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z'/><path d='M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z'/></svg>")
+      center / contain no-repeat;
+    opacity: 0.9;
+    pointer-events: none;
+  }
+
+  /* ═══════════════ CODE BLOCK ═══════════════ */
+  .news-cmd {
+    margin: 16px 0 20px;
+    padding: 16px 18px;
+    background: #1e1f22;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: #dbdee1;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .news-cmd .cmd { color: #8a95ff; font-weight: 600; }
+  .news-cmd .desc { color: #7e7e8c; }
+
+  /* ═══════════════ CTA BUTTON ═══════════════ */
+  .news-cta-wrap {
+    margin: 24px 0 8px;
+    text-align: center;
+  }
+  .news-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 26px;
+    background: var(--primary, #5865F2);
+    color: #fff !important;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none !important;
+    transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+    box-shadow: 0 10px 30px rgba(88, 101, 242, 0.4);
+  }
+  .news-cta:hover {
+    background: var(--primary-h, #4752c4);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(88, 101, 242, 0.55);
+    text-decoration: none !important;
+  }
+  .news-cta-ico {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+  .news-cta-ico svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .news-cta .arr {
+    display: inline-block;
+    transition: transform 0.2s;
+    font-size: 18px;
+    line-height: 1;
+  }
+  .news-cta:hover .arr { transform: translateX(4px); }
+
+  /* ═══════════════ FOOTER ═══════════════ */
+  .news-footer {
+    margin: 28px 0 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--border, #26262e);
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted, #7e7e8c);
+    line-height: 1.6;
+  }
+
+  /* ═══════════════ АДАПТИВ ═══════════════ */
+  @media (max-width: 600px) {
+    .news-hero { padding: 26px 20px; border-radius: 14px; }
+    .news-hero h2 { font-size: 24px; }
+    .news-hero p { font-size: 14px; }
+    .news-features { grid-template-columns: 1fr; }
+    .news-h3 { font-size: 17px; }
+    .news-h3-ico { width: 26px; height: 26px; }
+    .news-h3-ico svg { width: 14px; height: 14px; }
+    .news-cmd { font-size: 12px; padding: 12px 14px; }
+    .news-cta { width: 100%; justify-content: center; }
+    .news-quote::before { display: none; }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .news-badge svg,
+    .news-badge { animation: none !important; }
+    .news-feature,
+    .news-feature .news-ico,
+    .news-list li,
+    .news-list li::before { transition: none !important; }
+  }
+</style>
+
+<!-- ═══════════ HERO ═══════════ -->
+<div class="news-hero">
+  <span class="news-badge">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 2l2.4 4.86 5.36.78-3.88 3.78.92 5.34L12 14.24l-4.8 2.52.92-5.34L4.24 7.64l5.36-.78L12 2z"/>
+    </svg>
+    Релиз панельки
+  </span>
+  <h2>DobrakBot!</h2>
+  <p>Официальный запуск панели управления!</p>
+</div>
+
+<p>После долгих месяцев разработки мы рады представить <strong>полноценную веб-панель</strong> для управления ботом. Больше не нужно вводить сложные команды в Discord — настраивайте всё в пару кликов прямо с сайта.</p>
+
+<img class="news-image" src="https://dobrakbot.duckdns.org/assets/news/post1-id-1.png" alt="DobrakBot Dashboard" width="640" height="360">
+
+<!-- ═══════════ ЧТО ВНУТРИ? ═══════════ -->
+<div class="news-h3">
+  <span class="news-h3-ico">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+      <path d="M20 3v4"/>
+      <path d="M22 5h-4"/>
+      <path d="M4 17v2"/>
+      <path d="M5 18H3"/>
+    </svg>
+  </span>
+  Что внутри?
+</div>
+
+<p>Все основные модули бота теперь доступны через удобный интерфейс:</p>
+
+<div class="news-features">
+
+  <div class="news-feature f-economy">
+    <div class="news-ico ico-economy">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="8" cy="8" r="6"/>
+        <path d="M18.09 10.37A6 6 0 1 1 10.34 18"/>
+        <path d="M7 6h1v4"/>
+        <path d="m16.71 13.88.7.71-2.82 2.82"/>
+      </svg>
+    </div>
+    <strong>Экономика</strong>
+    <p>Полная настройка экономики (Мин. / Макс. выдача валюты, Шансы, Штрафы и многое другое...)</p>
+  </div>
+
+  <div class="news-feature f-moderation">
+    <div class="news-ico ico-moderation">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+        <path d="m9 12 2 2 4-4"/>
+      </svg>
+    </div>
+    <strong>Модерация</strong>
+    <p>Полная настройка модерации (Выдача / снятие наказаний, Журнал-Аудита, исключения, Иммунитеты и многое другое...)</p>
+  </div>
+
+  <div class="news-feature f-tickets">
+    <div class="news-ico ico-tickets">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
+        <path d="M13 5v2"/>
+        <path d="M13 17v2"/>
+        <path d="M13 11v2"/>
+      </svg>
+    </div>
+    <strong>Тикеты</strong>
+    <p>Полная настройка тикетов (темы, панельки, категории, транскрипты и т.д.)</p>
+  </div>
+
+  <div class="news-feature f-general">
+    <div class="news-ico ico-general">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    </div>
+    <strong>Главное</strong>
+    <p>Информация разная, смена аватарки, баннера, никнейма, языка ответа бота</p>
+  </div>
+
+</div>
+
+<!-- ═══════════ ЧТО УЖЕ ГОТОВО ═══════════ -->
+<div class="news-h3">
+  <span class="news-h3-ico">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="m9 12 2 2 4-4"/>
+    </svg>
+  </span>
+  Что уже готово
+</div>
+
+<ul class="news-list">
+  <li><strong>Вход через Discord</strong> — один клик, без паролей и регистраций</li>
+  <li><strong>Управление серверами</strong> — все гильдии, где вы админ или владелец</li>
+  <li><strong>Живые настройки</strong> — изменения применяются мгновенно</li>
+  <li><strong>reCAPTCHA v3</strong> — защита от ботов и спама на всех формах</li>
+  <li><strong>Кастомизация</strong> — локализация интерфейса, выбор темы</li>
+</ul>
+
+<div class="news-quote">
+  «Мы хотели сделать управление ботом максимально простым и приятным. Всё, что раньше требовало десятков команд, теперь доступно в 2–3 клика.»
+</div>
+
+<!-- ═══════════ БЫСТРЫЙ СТАРТ ═══════════ -->
+<div class="news-h3">
+  <span class="news-h3-ico">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+      <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+      <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+      <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+    </svg>
+  </span>
+  Быстрый старт
+</div>
+
+<p>Просто войдите через Discord на нашем сайте и выберите сервер. Бот уже готов к работе:</p>
+
+<p>Или сразу откройте <a href="https://dobrakbot.duckdns.org/dashboard.html">панель управления</a> и настройте бота под свой вкус на любом сервере (где вы являетесь админом или владельцем).</p>
+
+<div class="news-cta-wrap">
+  <a href="https://dobrakbot.duckdns.org/dashboard.html" class="news-cta">
+    <span class="news-cta-ico">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect width="7" height="9" x="3" y="3" rx="1"/>
+        <rect width="7" height="5" x="14" y="3" rx="1"/>
+        <rect width="7" height="9" x="14" y="12" rx="1"/>
+        <rect width="7" height="5" x="3" y="16" rx="1"/>
+      </svg>
+    </span>
+    <span>Открыть панель</span>
+    <span class="arr">→</span>
+  </a>
+</div>
+
+<div class="news-footer">
+  Спасибо, что вы с нами!<br>
+  Команда DobrakBot
+</div>
